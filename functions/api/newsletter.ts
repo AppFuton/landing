@@ -10,7 +10,7 @@ export async function onRequestPost(context: { request: Request; env: { DISCORD_
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        content: `📧 New newsletter subscription: ${email}`
+        content: `${email}`
       })
     });
 
