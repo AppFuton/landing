@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Typewriter Test</title>
+</head>
+<body>
+  <h1 id="output"></h1>
+  <script>
+    const text = "> FUTON";
+    const output = document.getElementById('output');
+    let index = 0;
+    
+    const interval = setInterval(() => {
+      if (index < text.length) {
+        output.textContent = text.slice(0, index + 1);
+        index++;
+      } else {
+        clearInterval(interval);
+        console.log('Typewriter complete!');
+      }
+    }, 100);
+  </script>
+</body>
+</html>

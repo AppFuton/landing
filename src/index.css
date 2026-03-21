@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-background text-on-surface font-mono;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer utilities {
+  .text-scanline {
+    text-shadow: 
+      0 0 1px rgba(96, 165, 250, 0.8),
+      0 0 2px rgba(96, 165, 250, 0.6),
+      0 0 4px rgba(96, 165, 250, 0.4);
+  }
+  
+  .terminal-box {
+    box-shadow: 
+      0 0 0 1px rgba(96, 165, 250, 0.2),
+      0 0 8px rgba(96, 165, 250, 0.1),
+      inset 0 0 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .pixel-corners {
+    clip-path: polygon(
+      0 4px, 4px 4px, 4px 0,
+      calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px,
+      100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%,
+      4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px)
+    );
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 3rem !important;
+    height: 3rem !important;
+    border-radius: 0.75rem !important;
+    background-color: rgba(96, 165, 250, 0.35) !important;
+    color: white !important;
+    box-shadow: 0 0 0 1px rgba(96, 165, 250, 0.5), 0 8px 16px rgba(0, 0, 0, 0.25) !important;
+  }
+
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+  }
+}

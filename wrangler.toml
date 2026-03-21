@@ -1,0 +1,11 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "futon-landing"
+main = "dist/index.html"
+compatibility_date = "2024-03-20"
+
+[build]
+command = "npm run build"
+watch_paths = ["src/**/*.tsx"]
+
+[env.production]
+vars = { ENVIRONMENT = "production" }
