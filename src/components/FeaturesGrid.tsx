@@ -2,12 +2,12 @@ import React from 'react';
 import { useTypewriter } from '../hooks/useAnimations';
 
 const features = [
-  { icon: '█', title: '1000+ SOURCES', details: 'Access manga from over a thousand sources in multiple languages.' },
-  { icon: '▓', title: 'CUSTOMIZABLE', details: 'Personalize your reading experience with advanced settings.' },
-  { icon: '▒', title: 'TRACK PROGRESS', details: 'Sync with MyAnimeList, AniList, Kitsu, and more.' },
-  { icon: '░', title: 'SMART SEARCH', details: 'Find manga quickly with global search across all extensions.' },
-  { icon: '▪', title: 'OFFLINE MODE', details: 'Download chapters for offline reading anywhere, anytime.' },
-  { icon: '▫', title: 'PRIVACY FIRST', details: 'Your data stays yours. Open source and tracker-free.' }
+  { icon: 'browse', title: '1000+ SOURCES', details: 'Access manga from over a thousand sources in multiple languages.' },
+  { icon: 'instant_mix', title: 'CUSTOMIZABLE', details: 'Personalize your reading experience with advanced settings.' },
+  { icon: 'sync', title: 'TRACK PROGRESS', details: 'Sync with MyAnimeList, AniList, Kitsu, and more.' },
+  { icon: 'search', title: 'SMART SEARCH', details: 'Find manga quickly with global search across all extensions.' },
+  { icon: 'download', title: 'OFFLINE MODE', details: 'Download chapters for offline reading anywhere, anytime.' },
+  { icon: 'security', title: 'PRIVACY FIRST', details: 'Your data stays yours. Open source and tracker-free.' }
 ];
 
 interface FeatureCardProps {
@@ -29,7 +29,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index, isVisible }) 
       <div className="absolute top-2 right-2 text-primary/30 text-xs font-terminal">
         [{String(index + 1).padStart(2, '0')}]
       </div>
-      <div className="text-5xl mb-4 text-primary font-bold transform group-hover:scale-110 transition-transform duration-300 origin-left">{feature.icon}</div>
+      <div className="material-symbols-outlined text-5xl mb-4 text-primary font-bold transform group-hover:scale-110 transition-transform duration-300 origin-left">{feature.icon}</div>
       <h3 className="text-lg font-bold mb-3 text-on-surface tracking-tight font-terminal uppercase min-h-[1.75rem]">
         {titleText.displayedText}
         {!titleText.isComplete && isVisible && <span className="animate-pulse">_</span>}
