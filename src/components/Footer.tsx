@@ -29,7 +29,8 @@ export const Footer: React.FC = () => {
         </div>
       </div>
       <div className="max-w-7xl mx-auto pt-8 border-t border-outline/30 text-center text-on-surface-muted/60">
-        <p>&copy; 2026 <a href="https://github.com/AppFuton/Futon/">Futon</a>. Open source under GPL-3.0.</p>
+        <p>&copy;2026 <a href="https://github.com/AppFuton/Futon/">Futon</a>. Open source under GPL-3.0.</p>
+        <p>Made with ❤️</p>
       </div>
     </footer>
   );

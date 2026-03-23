@@ -23,7 +23,16 @@ export default {
       fontFamily: {
         'mono': ['"JetBrains Mono"', '"Fira Code"', '"Courier Prime"', 'Courier', 'monospace'],
         'terminal': ['"IBM Plex Mono"', '"JetBrains Mono"', 'monospace'],
-      }
+      },
+      animation: {
+        'fade-in': 'fadeIn 200ms ease-in forwards',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(4px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
     }
   },
   plugins: [],

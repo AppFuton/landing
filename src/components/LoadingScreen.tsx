@@ -1,12 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, useMemo } from 'react';
 
 export const LoadingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   const [progress, setProgress] = useState(0);
   const [dots, setDots] = useState('');
   const [visibleLines, setVisibleLines] = useState<number>(0);
+  const [version, setVersion] = useState('v9.6.14');
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const pausedPointsRef = useRef<Set<number>>(new Set());
 
-  const LOG_LINES = [
-    { pct: 2,  text: '> Booting Futon v9.6.13...' },
+  // Fetch latest release version from GitHub
+  useEffect(() => {
+    fetch('https://api.github.com/repos/AppFuton/Futon/releases/latest')
+      .then(res => res.json())
+      .then(data => {
+        if (data.tag_name) {
+          setVersion(data.tag_name);
+        }
+      })
+      .catch(err => console.error('Failed to fetch Futon version:', err));
+  }, []);
+
+  const LOG_LINES = useMemo(() => [
+    { pct: 2,  text: `> Booting Futon ${version}...` },
     { pct: 5,  text: '> Forked from KotatsuApp/Kotatsu — standing on shoulders of giants' },
     { pct: 8,  text: '> Checking Android SDK (minSdk 23, compileSdk 36)...' },
     { pct: 11, text: '> Loading extensions...' },
@@ -46,32 +61,56 @@ export const LoadingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete
     { pct: 95, text: '> it is 3am. we are not stopping.' },
     { pct: 97, text: '> All systems nominal. Futon is ready.' },
     { pct: 100, text: '> Ready!' },
-  ];
+  ], [version]);
 
   useEffect(() => {
-    const LOADING_DURATION_MS = 10000;
+    const LOADING_DURATION_MS = 3000;
     const UPDATE_INTERVAL_MS = 50;
-    const steps = LOADING_DURATION_MS / UPDATE_INTERVAL_MS;
-    const increment = 100 / steps;
+    var steps = LOADING_DURATION_MS / UPDATE_INTERVAL_MS;
+    var increment = 100 / steps;
+    const waitTime = 2000;
 
-    const progressTimer = setInterval(() => {
-      setProgress((prev) => {
-        const next = prev + increment;
-        if (next >= 100) {
-          clearInterval(progressTimer);
-          setTimeout(onComplete, 300);
-          return 100;
-        }
-        return next;
-      });
-    }, UPDATE_INTERVAL_MS);
+    // Reset pause tracking for this animation
+    pausedPointsRef.current.clear();
+
+    const startProgressTimer = () => {
+      timerRef.current = setInterval(() => {
+        setProgress((prev) => {
+          const next = prev + increment;
+          if (next >= 100) {
+            if (timerRef.current) clearInterval(timerRef.current);
+            setTimeout(onComplete, waitTime);
+            return 100;
+          }
+          // Pause at 30%
+          if (Math.floor(next) === 30 && !pausedPointsRef.current.has(30)) {
+            pausedPointsRef.current.add(30);
+            if (timerRef.current) clearInterval(timerRef.current);
+            setTimeout(startProgressTimer, 500);
+            steps-=20; 
+            return 30;
+          }
+          // Pause at 80%
+          if (Math.floor(next) === 80 && !pausedPointsRef.current.has(80)) {
+            pausedPointsRef.current.add(80);
+            if (timerRef.current) clearInterval(timerRef.current);
+            setTimeout(startProgressTimer, 1000);
+            steps+=40;
+            return 80;
+          }
+          return next;
+        });
+      }, UPDATE_INTERVAL_MS);
+    };
+
+    startProgressTimer();
 
     const dotsTimer = setInterval(() => {
       setDots((prev) => (prev.length >= 3 ? '' : prev + '.'));
     }, 400);
 
     return () => {
-      clearInterval(progressTimer);
+      if (timerRef.current) clearInterval(timerRef.current);
       clearInterval(dotsTimer);
     };
   }, [onComplete]);
