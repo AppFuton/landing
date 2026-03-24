@@ -7,6 +7,7 @@ import { NewsletterSignup } from './components/NewsletterSignup'
 import { DownloadSection } from './components/DownloadSection'
 import { Footer } from './components/Footer'
 import { LoadingScreen } from './components/LoadingScreen'
+import { UnsubscribeForm } from './components/UnsubscribeForm'
 import { useTypewriter, useInView } from './hooks/useAnimations'
 
 const LOG_LINES = [
@@ -67,6 +68,11 @@ function LogsPage() {
   );
 }
 
+function UnsubscribePage() {
+  const [isVisible] = useState(true);
+  return <UnsubscribeForm isVisible={isVisible} />;
+}
+
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const path = window.location.pathname;
@@ -76,6 +82,9 @@ export default function App() {
   }
   if (path === '/discord') {
     return<meta http-equiv="refresh" content="0; url=https://discord.gg/9sqBHXhwzz" />
+  }
+  if (path === '/unsubscribe') {
+    return <UnsubscribePage />;
   }
 
   if (isLoading) {
