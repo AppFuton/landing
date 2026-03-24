@@ -110,7 +110,7 @@ export const UnsubscribeForm: React.FC<UnsubscribeFormProps> = ({ isVisible }) =
 
         <div className="mt-8 pt-8 border-t border-outline/30">
           <p className="text-on-surface-muted text-xs font-mono">
-            <span className="text-primary">&gt;</span> Having issues? <a href="mailto:support@example.com" className="text-primary hover:underline">Contact support</a>
+            <span className="text-primary">&gt;</span> Having issues? <a href="mailto:futon@waifu.club" className="text-primary hover:underline">Contact support</a>
           </p>
         </div>
       </div>
