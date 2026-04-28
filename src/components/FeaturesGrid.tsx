@@ -2,7 +2,7 @@ import React from 'react';
 import { useTypewriter } from '../hooks/useAnimations';
 
 const features = [
-  { icon: 'browse', title: '1000+ SOURCES', details: 'Access manga from over a thousand sources in multiple languages.' },
+  { icon: 'browse', title: '1000+ SOURCES', details: 'Access manga from over a thousand sources, including Tachiyomi sources, in multiple languages.' },
   { icon: 'instant_mix', title: 'CUSTOMIZABLE', details: 'Personalize your reading experience with advanced settings.' },
   { icon: 'sync', title: 'TRACK PROGRESS', details: 'Sync with MyAnimeList, AniList, Kitsu, and more.' },
   { icon: 'search', title: 'SMART SEARCH', details: 'Find manga quickly with global search across all extensions.' },

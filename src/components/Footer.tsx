@@ -17,6 +17,9 @@ export const Footer: React.FC = () => {
             <li><a href="https://futonapp.pages.dev" className="hover:text-primary transition-colors">Documentation</a></li>
             <li><a href="https://github.com/AppFuton/Futon/" className="hover:text-primary transition-colors">Source Code</a></li>
             <li><a href="https://github.com/AppFuton/Futon/releases" className="hover:text-primary transition-colors">Releases</a></li>
+            <li><a href="/logs">View Loading Logs</a></li>
+            <li><a href="https://github.com/Kotatsu-Redo/kotatsu-parsers-redo" className="hover:text-primary transition-colors">Kotatsu Redo Parsers</a></li>
+            <li><a href="https://github.com/Kototoro-app/Kototoro" className="hover:text-primary transition-colors">Kototoro</a></li>
           </ul>
         </div>
         <div>
@@ -24,7 +27,6 @@ export const Footer: React.FC = () => {
           <ul className="space-y-3 text-on-surface-muted">
             <li><a href="https://discord.gg/9sqBHXhwzz" className="hover:text-primary transition-colors">Discord</a></li>
             <li><a href="mailto:futon@waifu.club" className="hover:text-primary transition-colors">Email Support</a></li>
-            <li><a href="/logs">View Loading Logs</a></li>
           </ul>
         </div>
       </div>

@@ -5,6 +5,7 @@ import { FeaturesGrid } from './components/FeaturesGrid'
 import { ScreenshotCarousel } from './components/ScreenshotCarousel'
 import { NewsletterSignup } from './components/NewsletterSignup'
 import { DownloadSection } from './components/DownloadSection'
+import { TeamSection } from './components/TeamSection'
 import { Footer } from './components/Footer'
 import { LoadingScreen } from './components/LoadingScreen'
 import { UnsubscribeForm } from './components/UnsubscribeForm'
@@ -168,6 +169,8 @@ function MainContent() {
           headingRef={downloadHeading.ref}
         />
       </div>
+
+      <TeamSection />
       
       <section className="py-24 px-4 bg-surface-elevated border-t border-outline/30">
         <div className="max-w-2xl mx-auto">
