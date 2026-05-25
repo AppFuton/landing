@@ -26,7 +26,7 @@ export const Footer: React.FC = () => {
           <h3 className="text-xl font-bold mb-6 tracking-tight text-on-surface">Contact</h3>
           <ul className="space-y-3 text-on-surface-muted">
             <li><a href="https://discord.gg/9sqBHXhwzz" className="hover:text-primary transition-colors">Discord</a></li>
-            <li><a href="mailto:futon@waifu.club" className="hover:text-primary transition-colors">Email Support</a></li>
+            <li><a href="mailto:appfuton@gmail.com" className="hover:text-primary transition-colors">Email Support</a></li>
           </ul>
         </div>
       </div>
