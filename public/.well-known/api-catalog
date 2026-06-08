@@ -1,0 +1,21 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://futon.wtf/",
+      "rel": "service-doc",
+      "href": "https://github.com/AppFuton/landing#readme"
+    },
+    {
+      "anchor": "https://futon.wtf/api/newsletter",
+      "rel": "service-desc",
+      "href": "https://github.com/AppFuton/landing/blob/main/functions/api/newsletter.ts",
+      "type": "application/json"
+    },
+    {
+      "anchor": "https://futon.wtf/api/unsubscribe",
+      "rel": "service-desc",
+      "href": "https://github.com/AppFuton/landing/blob/main/functions/api/unsubscribe.ts",
+      "type": "application/json"
+    }
+  ]
+}

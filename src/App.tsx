@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ParallaxBackground } from './components/ParallaxBackground'
 import { Hero3D } from './components/Hero3D'
 import { FeaturesGrid } from './components/FeaturesGrid'
@@ -77,6 +77,48 @@ function UnsubscribePage() {
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const path = window.location.pathname;
+
+  useEffect(() => {
+    // WebMCP implementation
+    if (typeof navigator !== 'undefined' && (navigator as any).modelContext?.provideContext) {
+      (navigator as any).modelContext.provideContext({
+        tools: [
+          {
+            name: "subscribe_newsletter",
+            description: "Subscribe an email to the Futon newsletter for updates",
+            inputSchema: {
+              type: "object",
+              properties: {
+                email: {
+                  type: "string",
+                  format: "email",
+                  description: "The email address to subscribe"
+                }
+              },
+              required: ["email"]
+            },
+            execute: async ({ email }: { email: string }) => {
+              try {
+                const response = await fetch('/api/newsletter', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ email })
+                });
+                const data = await response.json();
+                if (response.ok) {
+                  return { success: true, message: `Successfully subscribed ${email}` };
+                } else {
+                  return { success: false, error: data.error || 'Failed to subscribe' };
+                }
+              } catch (error) {
+                return { success: false, error: 'Network error occurred' };
+              }
+            }
+          }
+        ]
+      });
+    }
+  }, []);
 
   if (path === '/logs') {
     return <LogsPage />;

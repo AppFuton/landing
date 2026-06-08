@@ -1,0 +1,26 @@
+{
+  "serverInfo": {
+    "name": "Futon Landing MCP",
+    "version": "1.0.0"
+  },
+  "transport": {
+    "type": "webmcp"
+  },
+  "capabilities": {
+    "tools": {
+      "subscribe_newsletter": {
+        "description": "Subscribe an email to the Futon newsletter",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string",
+              "format": "email"
+            }
+          },
+          "required": ["email"]
+        }
+      }
+    }
+  }
+}

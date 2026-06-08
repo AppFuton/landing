@@ -1,0 +1,12 @@
+{
+  "$schema": "https://agentskills.io/schema/v0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "newsletter-subscription",
+      "type": "api",
+      "description": "Ability to subscribe and unsubscribe from the Futon newsletter",
+      "url": "https://futon.wtf/api/newsletter",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}
