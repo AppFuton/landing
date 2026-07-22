@@ -18,10 +18,10 @@ const teamMembers = [
 
 export const TeamSection: React.FC = () => {
   const teamHeading = useInView();
-  const teamHeadingText = useTypewriter('$ cat /team', 50, 0, teamHeading.isInView);
+  const teamHeadingText = useTypewriter('$ cat /supporters', 50, 0, teamHeading.isInView);
 
   return (
-    <section className="relative py-24 px-4 bg-surface border-t border-outline/30">
+    <section id="supporters" className="relative py-24 px-4 bg-transparent border-t border-outline/30">
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute -top-16 right-10 w-64 h-64 rounded-full bg-primary opacity-[0.05] blur-3xl" />
         <div className="absolute -bottom-10 left-8 w-48 h-48 rounded-full bg-secondary opacity-[0.08] blur-3xl" />
@@ -36,7 +36,7 @@ export const TeamSection: React.FC = () => {
             {!teamHeadingText.isComplete && teamHeading.isInView && <span className="animate-pulse">_</span>}
           </h2>
           <p className="mt-4 text-sm md:text-base text-on-surface-muted max-w-xl mx-auto">
-            The humans keeping Futon fast, clean, and reader-first.
+            The people behind Futon.
           </p>
         </div>
 

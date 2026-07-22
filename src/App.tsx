@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
+import Lenis from 'lenis'
 import { ParallaxBackground } from './components/ParallaxBackground'
-import { Hero3D } from './components/Hero3D'
 import { FeaturesGrid } from './components/FeaturesGrid'
 import { ScreenshotCarousel } from './components/ScreenshotCarousel'
+import { ScreenshotDeck } from './components/ScreenshotDeck'
 import { NewsletterSignup } from './components/NewsletterSignup'
 import { DownloadSection } from './components/DownloadSection'
 import { TeamSection } from './components/TeamSection'
 import { Footer } from './components/Footer'
+import { Navbar } from './components/Navbar'
 import { LoadingScreen } from './components/LoadingScreen'
 import { UnsubscribeForm } from './components/UnsubscribeForm'
 import { useTypewriter, useInView } from './hooks/useAnimations'
@@ -120,6 +122,31 @@ export default function App() {
     }
   }, []);
 
+  useEffect(() => {
+    if (isLoading) return;
+
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // smooth exponential out
+      smoothWheel: true,
+    });
+
+    const raf = (time: number) => {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    };
+
+    requestAnimationFrame(raf);
+
+    // Make lenis globally accessible for Navbar/other components scroll action
+    (window as any).lenis = lenis;
+
+    return () => {
+      lenis.destroy();
+      delete (window as any).lenis;
+    };
+  }, [isLoading]);
+
   if (path === '/logs') {
     return <LogsPage />;
   }
@@ -156,9 +183,11 @@ function MainContent() {
   return (
     <div className="relative">
       <ParallaxBackground />
+      <Navbar />
       
-      <section className="relative h-screen flex flex-col md:flex-row items-center justify-between">
-        <div className="w-full md:w-1/2 flex flex-col items-start justify-center text-left px-8 md:px-16 z-10 pointer-events-auto">
+      {/* Hero section with top padding for navbar */}
+      <section className="relative min-h-screen flex flex-col md:flex-row items-center justify-between pt-16 ">
+        <div className="w-full md:w-1/2 flex flex-col items-start justify-center text-left px-8 md:px-16 z-10 pointer-events-auto py-12">
           <h1 className="text-5xl md:text-7xl font-bold text-on-surface mb-4 tracking-tight font-terminal text-scanline min-h-[4rem]">
             <span className="text-primary">{heroTitle.displayedText}</span>
             {!heroTitle.isComplete && <span className="animate-pulse">_</span>}
@@ -176,12 +205,12 @@ function MainContent() {
             1000+ sources. Zero tracking. Built by readers.
           </div>
         </div>
-        <div className="hidden md:flex w-full md:w-1/2 h-full items-center justify-center">
-          <Hero3D />
+        <div className="hidden md:flex w-full md:w-1/2 h-[80vh] items-center justify-center">
+          <ScreenshotDeck />
         </div>
       </section>
       
-      <section className="py-24 px-4 bg-background border-t border-outline/30">
+      <section id="features" className="py-24 px-4 bg-transparent border-t border-outline/30">
         <div className="max-w-7xl mx-auto">
           <h2 ref={featuresHeading.ref} className="text-3xl md:text-4xl font-bold text-center mb-16 text-on-surface tracking-tight font-terminal min-h-[3rem]">
             {featuresHeadingText.displayedText}
@@ -191,7 +220,7 @@ function MainContent() {
         </div>
       </section>
       
-      <section className="py-24 px-4 bg-surface border-t border-outline/30">
+      <section id="screenshots" className="py-24 px-4 bg-transparent border-t border-outline/30">
         <div className="max-w-7xl mx-auto">
           <h2 ref={screenshotsHeading.ref} className="text-3xl md:text-4xl font-bold text-center mb-16 text-on-surface tracking-tight font-terminal min-h-[3rem]">
             {screenshotsHeadingText.displayedText}
@@ -203,7 +232,7 @@ function MainContent() {
         </div>
       </section>
       
-      <div className="bg-background border-t border-outline/30">
+      <div className="bg-transparent border-t border-outline/30">
         <DownloadSection 
           heading={downloadHeadingText.displayedText}
           isHeadingComplete={downloadHeadingText.isComplete}

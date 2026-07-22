@@ -15,7 +15,7 @@ export const DownloadSection: React.FC<DownloadSectionProps> = ({
 }) => {
   const [showTooltip, setShowTooltip] = useState(false);
   return (
-    <section className="py-20 text-center px-4">
+    <section id="download" className="py-20 text-center px-4">
       <h2 ref={headingRef} className="text-2xl md:text-3xl font-bold mb-12 text-on-surface font-terminal min-h-[2.5rem]">
         {heading}
         {!isHeadingComplete && isVisible && <span className="animate-pulse">_</span>}

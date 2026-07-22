@@ -2,19 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://futon.wtf/</loc>
-    <lastmod>2026-06-08</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://futon.wtf/logs</loc>
-    <lastmod>2026-06-08</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://futon.wtf/unsubscribe</loc>
-    <lastmod>2026-06-08</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>never</changefreq>
     <priority>0.1</priority>
   </url>
