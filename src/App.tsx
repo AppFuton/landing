@@ -147,6 +147,10 @@ export default function App() {
     };
   }, [isLoading]);
 
+  if (path === '/fdroid' || path === '/fdroid/' || path === '/fdroid/repo' || path === '/fdroid/repo/') {
+    window.location.replace('/fdroid/repo/index.html');
+    return null;
+  }
   if (path === '/logs') {
     return <LogsPage />;
   }
